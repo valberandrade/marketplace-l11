@@ -45,6 +45,16 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        //return redirect(route('dashboard', absolute: false));
+
+        if ($request->user()->role === 'admin'){
+            return redirect((route('admin.dashboard')));
+        }elseif ($request->user()->role === 'vendor'){
+            return redirect((route('vendor.dashboard')));
+        }elseif ($request->user()->role === 'user'){
+            return redirect((route('dashboard')));
+        }else{
+            return redirect()->route('login')->with('error', 'Por favor verifique seus dados de acesso');
+        }
     }
 }

@@ -33,6 +33,18 @@ class LoginRequest extends FormRequest
     }
 
     /**
+     * @return string[]
+     */
+    public function messages(): array
+    {
+        return [
+            'required' => 'Este campo é obrigatório',
+            'string' => 'Por favor insira caracteres válidos',
+            'email' => 'Por favor informe um e-mail válido'
+        ];
+    }
+
+    /**
      * Attempt to authenticate the request's credentials.
      *
      * @throws \Illuminate\Validation\ValidationException
