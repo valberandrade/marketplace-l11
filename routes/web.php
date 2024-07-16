@@ -17,4 +17,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//ROTAS ADMIN
+Route::prefix('admin')->name('admin.')->group(function (){
+    Route::get('dashboard', [\App\Http\Controllers\Backend\AdminController::class, 'dashboard'])->middleware(['auth', 'admin'])->name('dashboard');
+});
+
+//ROTAS VENDOR
+Route::prefix('vendor')->name('vendor.')->group(function (){
+    Route::get('dashboard', [\App\Http\Controllers\Backend\VendorController::class, 'dashboard'])->middleware(['auth', 'vendor'])->name('dashboard');
+});
+
 require __DIR__.'/auth.php';
