@@ -1,14 +1,14 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Painel Administrador</title>
-</head>
-<body>
+@extends('admin.layouts.master')
 
-<h1>Painel Administrador de {{ Auth::user()->name }}</h1>
+@section('content')
 
-</body>
-</html>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Painel Administrador de {{ Auth::user()->name }}</li>
+        </ol>
+    </div>
+
+@endsection
+
+
