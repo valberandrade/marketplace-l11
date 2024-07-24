@@ -17,10 +17,10 @@
             <div class="container">
                 <div class="row justify-content-center mt-5">
                     <div class="col-lg-5">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header text-center">
-                                <img src="{{ asset('backend/assets/img/logo.png') }}" alt="" title="" width="70" />
-                            </div>
+                        <div class="text-center mt-5">
+                            <img src="{{ asset('backend/assets/img/logo.png') }}" alt="" title="" width="70" />
+                        </div>
+                        <div class="card shadow-lg border-0 rounded-lg mt-3">
                             @if(session('status'))
                                 <div class="alert alert-warning" role="alert">
                                     {{ session('status') }}
