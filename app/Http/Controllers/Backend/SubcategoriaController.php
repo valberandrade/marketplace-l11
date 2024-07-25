@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubcategoriaFormRequest;
 use App\Models\Categoria;
 use App\Models\Subcategoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SubcategoriaController extends Controller
 {
@@ -30,9 +32,19 @@ class SubcategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SubcategoriaFormRequest $request)
     {
-        //
+        $dados = $request->all();
+        $dados['slug'] = Str::slug($dados['nome']);
+        $store = Subcategoria::create($dados);
+
+        if ($store){
+            toastr()->success('Subcategoria cadastrada com sucesso');
+            return redirect()->route('admin.subcategoria.index');
+        }else{
+            toastr()->error('Erro ao cadastrar a subcategoria, tente novamente!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -65,5 +77,17 @@ class SubcategoriaController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Muda Status com ajax
+     */
+    public function mudaStatusSub(Request $request)
+    {
+        $subcategoria = Subcategoria::findOrFail($request->id);
+        $subcategoria->status = $request->status == 'true' ? 1 : 0;
+        $subcategoria->save();
+        return response(['message' => 'Status Atualizado com sucesso']);
+
     }
 }

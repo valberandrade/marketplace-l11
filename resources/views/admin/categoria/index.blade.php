@@ -45,7 +45,7 @@
                                 <td>{{ $categoria->created_at->format('d/m/Y') }}</td>
                                 <td>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input muda-status" type="checkbox" id="flexSwitchCheckChecked" @if($categoria->status === 1) checked @endif name="" data-id="{{ $categoria->id }}">
+                                        <input class="form-check-input muda-status" type="checkbox" id="flexSwitchCheckChecked" @if($categoria->status === 1) checked @endif name="status" data-id="{{ $categoria->id }}">
                                     </div>
                                 </td>
                                 <td class="d-flex align-items-center">

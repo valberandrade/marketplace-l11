@@ -41,11 +41,11 @@
                             <tr>
                                 <td>{{ $subcategoria->id }}</td>
                                 <td>{{ $subcategoria->nome }}</td>
-                                <td></td>
+                                <td>{{ $subcategoria->categoria->nome }}</td>
                                 <td>{{ $subcategoria->created_at->format('d/m/Y') }}</td>
                                 <td>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input muda-status" type="checkbox" id="flexSwitchCheckChecked" @if($subcategoria->status === 1) checked @endif name="" data-id="{{ $subcategoria->id }}">
+                                        <input class="form-check-input muda-status-sub" name="status" type="checkbox" @if($subcategoria->status == 1) checked @endif data-id="{{ $subcategoria->id }}">
                                     </div>
                                 </td>
                                 <td class="d-flex align-items-center">
@@ -68,22 +68,22 @@
     @push('scripts')
         <script>
             $(document).ready(function (){
-                $('.muda-status').on('click', function (){
-                    let checando = $(this).is(':checked');
-                    let id = $(this).attr('data-id');
+                $('.muda-status-sub').on('click', function (){
+                    let check = $(this).is(':checked');
+                    let id_sub = $(this).attr('data-id');
 
                     $.ajax({
-                        url: "{{ route('admin.subcategoria.mudastatus') }}",
+                        url: "{{ route('admin.subcategoria.mudastatussub') }}",
                         method: 'PUT',
                         data: {
-                            status: checando,
-                            id: id
+                            status: check,
+                            id: id_sub
                         },
                         success: function (data){
                             toastr.success(data.message);
                         },
                         error: function (xhr, status, error){
-                            toastr.error(error.error);
+                            console.log(error);
                         }
                     });
                 });

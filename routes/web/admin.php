@@ -21,5 +21,5 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
     //ROTA SUBCATEGORIA
     Route::resource('subcategoria', \App\Http\Controllers\Backend\SubcategoriaController::class)->middleware(['auth', 'admin']);
-    Route::put('subcategoria/muda-status', [\App\Http\Controllers\Backend\SubcategoriaController::class, 'mudaStatus'])->name('subcategoria.mudastatus');
+    Route::put('muda-status-subcategoria', [\App\Http\Controllers\Backend\SubcategoriaController::class, 'mudaStatusSub'])->name('subcategoria.mudastatussub');
 });

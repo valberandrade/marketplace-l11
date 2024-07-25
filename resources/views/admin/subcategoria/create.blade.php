@@ -21,7 +21,9 @@
                     <label for="categoria_id" class="form-label">Categoria</label>
                     <select class="form-select mb-3" name="categoria_id" id="categoria_id">
                         @forelse($categorias as $categoria)
-                        <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                            @if($categoria->status == 1)
+                                <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                            @endif
                         @empty
                         <option>Nenhuma categoria encontrada</option>
                         @endforelse
