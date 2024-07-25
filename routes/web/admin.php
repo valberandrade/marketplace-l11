@@ -15,6 +15,11 @@ Route::prefix('admin')->name('admin.')->group(function (){
     //ROTA SLIDER DESTAQUE
     Route::resource('slider', \App\Http\Controllers\Backend\SliderController::class)->middleware(['auth', 'admin']);
 
-    //ROTA CATEGORIAS
+    //ROTA CATEGORIA PAI
     Route::resource('categoria', \App\Http\Controllers\Backend\CategoriaController::class)->middleware(['auth', 'admin']);
+    Route::put('muda-status', [\App\Http\Controllers\Backend\CategoriaController::class, 'mudaStatus'])->name('categoria.mudastatus');
+
+    //ROTA SUBCATEGORIA
+    Route::resource('subcategoria', \App\Http\Controllers\Backend\SubcategoriaController::class)->middleware(['auth', 'admin']);
+    Route::put('subcategoria/muda-status', [\App\Http\Controllers\Backend\SubcategoriaController::class, 'mudaStatus'])->name('subcategoria.mudastatus');
 });

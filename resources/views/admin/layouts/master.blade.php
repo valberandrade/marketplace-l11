@@ -125,7 +125,9 @@
                                     icon: "success"
                                 });
 
-                                window.location.reload();
+                                setTimeout(function (){
+                                    window.location.reload();
+                                }, 2000);
                             }
                         },
                         error: function (xhr, status, error){
@@ -137,5 +139,8 @@
         })
     })
 </script>
+
+@stack('scripts')
+
 </body>
 </html>

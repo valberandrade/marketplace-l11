@@ -3,15 +3,15 @@
 @section('content')
 
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Categorias</h1>
+        <h1 class="mt-4">Subcategorias</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Categorias</li>
+            <li class="breadcrumb-item active">Subcategorias</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <h6 class="mb-0">Todos as Categorias</h6>
-                <a href="{{ route('admin.categoria.create') }}" title="Nova Categoria" class="btn btn-success btn-sm"><i class="far fa-plus-square me-2"></i>Nova Categoria</a>
+                <h6 class="mb-0">Todos as Subcategorias</h6>
+                <a href="{{ route('admin.subcategoria.create') }}" title="Nova Subcategoria" class="btn btn-success btn-sm"><i class="far fa-plus-square me-2"></i>Nova Subcategoria</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -19,7 +19,7 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Ícone</th>
+                            <th>Subcategoria</th>
                             <th>Categoria</th>
                             <th>Cadastrado em</th>
                             <th>Status</th>
@@ -29,7 +29,7 @@
                         <tfoot>
                         <tr>
                             <th>Id</th>
-                            <th>Ícone</th>
+                            <th>Subcategoria</th>
                             <th>Categoria</th>
                             <th>Cadastrado em</th>
                             <th>Status</th>
@@ -37,20 +37,20 @@
                         </tr>
                         </tfoot>
                         <tbody>
-                        @forelse($categorias as $categoria)
+                        @forelse($subcategorias as $subcategoria)
                             <tr>
-                                <td>{{ $categoria->id }}</td>
-                                <td><i class="{{ $categoria->icone }}" style="font-size: 20px;"></i></td>
-                                <td>{{ $categoria->nome }}</td>
-                                <td>{{ $categoria->created_at->format('d/m/Y') }}</td>
+                                <td>{{ $subcategoria->id }}</td>
+                                <td>{{ $subcategoria->nome }}</td>
+                                <td></td>
+                                <td>{{ $subcategoria->created_at->format('d/m/Y') }}</td>
                                 <td>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input muda-status" type="checkbox" id="flexSwitchCheckChecked" @if($categoria->status === 1) checked @endif name="" data-id="{{ $categoria->id }}">
+                                        <input class="form-check-input muda-status" type="checkbox" id="flexSwitchCheckChecked" @if($subcategoria->status === 1) checked @endif name="" data-id="{{ $subcategoria->id }}">
                                     </div>
                                 </td>
                                 <td class="d-flex align-items-center">
-                                    <a href="{{ route('admin.categoria.edit', $categoria->id) }}" class="btn btn-primary btn-sm me-2"><i class="fas fa-edit"></i></a>
-                                    <a href="{{ route('admin.categoria.destroy', $categoria->id) }}" class="btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>
+                                    <a href="{{ route('admin.subcategoria.edit', $subcategoria->id) }}" class="btn btn-primary btn-sm me-2"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('admin.subcategoria.destroy', $subcategoria->id) }}" class="btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         @empty
@@ -73,7 +73,7 @@
                     let id = $(this).attr('data-id');
 
                     $.ajax({
-                        url: "{{ route('admin.categoria.mudastatus') }}",
+                        url: "{{ route('admin.subcategoria.mudastatus') }}",
                         method: 'PUT',
                         data: {
                             status: checando,
